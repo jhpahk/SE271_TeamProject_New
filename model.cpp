@@ -168,7 +168,7 @@ Student* StudentDB::get_student(int student_num) {
 }
 
 Admin* StudentDB::get_admin(std::string admin_id) {
-	for (auto admin : admin_database) {
+	for (auto& admin : admin_database) {
 		if (admin_id == admin.get_admin_id()) return &admin;
 	}
 	return nullptr;

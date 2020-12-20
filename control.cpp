@@ -59,11 +59,13 @@ bool LogIn::student_log_in(StudentDB* db, ControlByStudent* control_student) {
 
 	if (pwd != student->get_password()) {
 		std::cout << "비밀번호가 잘못되었습니다." << std::endl;
+		Sleep(500);
 		return false;
 	}
 
 	std::cout << "로그인 되었습니다." << std::endl;
 	control_student->set_student(student);
+	Sleep(500);
 	return true;
 }
 
@@ -104,10 +106,6 @@ Student* ControlByStudent::get_student() {
 }
 
 void ControlByStudent::make_reservation(Seat* seat) {
-	if (student->get_is_using()) {
-		std::cout << "이미 예약중인 좌석이 있습니다." << std::endl;
-		return;
-	}
 	if (seat->is_reserved()) {
 		std::cout << "이미 예약된 좌석입니다." << std::endl;
 		return;
@@ -132,14 +130,6 @@ void ControlByStudent::cancel_reservation() {
 	student->get_seat_using()->set_reservation_reverse();
 	student->set_seat_using(nullptr);
 	student->get_seat_using()->get_belong_to()->set_cur_using_num(student->get_seat_using()->get_belong_to()->get_cur_using_num() - 1);
-}
-
-void ControlByStudent::report_away_from(Seat* seat) {			// 현재는 그냥 신고하면 바로 예약 취소되도록 함. 타이머를 넣어서 일정 시간 안에 자리에 돌아오면 자리비움 취소할 수 있도록!
-	seat->set_away_from_reverse();
-}
-
-void ControlByStudent::cancel_away_from() {
-	student->get_seat_using()->set_away_from_reverse();
 }
 
 // ControlByAdmin
