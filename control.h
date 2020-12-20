@@ -16,8 +16,6 @@ public:
 	Student* get_student();
 	void make_reservation(Seat* seat);			// 좌석 예약
 	void cancel_reservation();					// 예약 취소
-	void report_away_from(Seat* seat);			// 자리 비움 신고
-	void cancel_away_from();					// 자리 비움 해제
 };
 
 class ControlByAdmin : public ControlByStudent {

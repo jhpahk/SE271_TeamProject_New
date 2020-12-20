@@ -137,6 +137,10 @@ void ControlByAdmin::set_admin(Admin* controller) {
 	admin = controller;
 }
 
+Admin* ControlByAdmin::get_admin() {
+	return admin;
+}
+
 void ControlByAdmin::add_studyroom() {
 
 }

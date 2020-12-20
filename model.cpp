@@ -131,7 +131,7 @@ void StudentDB::save_student_database() {
 		student_db += row;
 	}
 
-	std::fstream fs;
+	std::ofstream fs;
 	fs.open("student.csv");
 	fs.write(student_db.c_str(), student_db.size());
 	fs.close();
@@ -141,13 +141,13 @@ void StudentDB::save_student_admin_database() {
 	std::string admin_db;
 	std::string row;
 
-	for (auto admin : student_database) {
+	for (auto admin : admin_database) {
 		if (admin_db.size()) admin_db += '\n';
 		row = std::to_string(admin.get_student_num()) + ',' + admin.get_password();
 		admin_db += row;
 	}
 
-	std::fstream fs;
+	std::ofstream fs;
 	fs.open("admin.csv");
 	fs.write(admin_db.c_str(), admin_db.size());
 	fs.close();
@@ -236,7 +236,7 @@ void StudyRoomDB::save_studyroom_database() {
 		studyroom_db += row;
 	}
 
-	std::fstream fs;
+	std::ofstream fs;
 	fs.open("studyroom.csv");
 	fs.write(studyroom_db.c_str(), studyroom_db.size());
 	fs.close();

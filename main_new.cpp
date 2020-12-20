@@ -36,6 +36,10 @@ int main() {
 	UI main_interface;
 
 	StudentDB database;
+	StudyRoomDB room_database;
+	database.load_student_database();
+	database.load_student_admin_database();
+	room_database.load_studyroom_database();
 
 	LogIn log_in;
 	ControlByStudent cs;
@@ -46,11 +50,11 @@ int main() {
 	while (true) {
 		system("cls");
 		int sel;
-		std::cout << "\n--------------------     독서실 통합 관리 프로그램     --------------------" << std::endl;
+		std::cout << "\n----------------------------     독서실 통합 관리 프로그램     ----------------------------" << std::endl;
 		std::cout << std::endl << std::endl << std::endl;
-		std::cout << "1. 학생 로그인     2. 관리자 로그인     3.학생 회원가입     4.관리자 회원가입     5. 종료" << "\n\n입력: ";
+		std::cout << "1. 학생 로그인     2. 관리자 로그인     3. 학생 회원가입     4. 관리자 회원가입     5. 종료" << "\n\n입력: ";
 		std::cin >> sel;
-		if (std::cin.fail() || sel < 0 || sel > 5) {
+		if (std::cin.fail() || sel <= 0 || sel > 5) {
 			std::cout << "\n\n잘못된 입력입니다";
 			Sleep(500);
 			std::cin.clear();
@@ -189,5 +193,10 @@ int main() {
 			break;
 		}
 	}
+
+	database.save_student_database();
+	database.save_student_admin_database();
+	room_database.save_studyroom_database();
+
 	return 0;
 }
