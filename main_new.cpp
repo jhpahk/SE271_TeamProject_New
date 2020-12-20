@@ -31,11 +31,15 @@ int main() {
 	E7.add_seat(Seat(&E7, 10, temp_pos));
 	temp_pos(3, 3);
 	E7.add_seat(Seat(&E7, 11, temp_pos));
-	///
 
 	UI main_interface;
 
 	StudentDB database;
+	StudyRoomDB room_database;
+
+	database.load_student_admin_database();
+	database.load_student_database();
+	room_database.load_studyroom_database();
 
 	LogIn log_in;
 	ControlByStudent cs;
@@ -320,5 +324,10 @@ int main() {
 			break;
 		}
 	}
+
+	database.save_student_admin_database();
+	database.save_student_database();
+	room_database.save_studyroom_database();
+
 	return 0;
 }
