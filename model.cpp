@@ -243,5 +243,5 @@ void StudyRoomDB::save_studyroom_database() {
 }
 
 void StudyRoomDB::add_studyroom(StudyRoom* studyroom) {
-
+	return;
 }
