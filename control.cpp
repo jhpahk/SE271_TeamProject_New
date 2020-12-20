@@ -124,25 +124,19 @@ void ControlByStudent::cancel_reservation() {
 		return;
 	}
 
-	std::cout << student->get_seat_using()->get_seat_num() << "번 좌석 예약이 취소되었습니다." << std::endl;
+	std::cout << std::endl << student->get_seat_using()->get_seat_num() << "번 좌석 예약이 취소되었습니다." << std::endl;
+
+	student->get_seat_using()->get_belong_to()->set_cur_using_num(student->get_seat_using()->get_belong_to()->get_cur_using_num() - 1);
 	student->set_is_using_reverse();
 	student->get_seat_using()->set_res_student(nullptr);
 	student->get_seat_using()->set_reservation_reverse();
 	student->set_seat_using(nullptr);
-	student->get_seat_using()->get_belong_to()->set_cur_using_num(student->get_seat_using()->get_belong_to()->get_cur_using_num() - 1);
+	Sleep(500);
 }
 
 // ControlByAdmin
 void ControlByAdmin::set_admin(Admin* controller) {
 	admin = controller;
-}
-
-void ControlByAdmin::add_studyroom() {
-
-}
-
-void ControlByAdmin::change_seat_coordinate() {
-
 }
 
 void ControlByAdmin::force_cancel_reservation(Seat* seat) {

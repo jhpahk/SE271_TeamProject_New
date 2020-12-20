@@ -8,7 +8,7 @@
 int main() {
 
 	/// 독서실 생성, 좌석 세팅
-	StudyRoom E7("E7", 20);
+	StudyRoom E7("E7", 11);
 	Pos temp_pos(0, 0);
 	E7.add_seat(Seat(&E7, 1, temp_pos));
 	temp_pos(1, 0);
@@ -94,14 +94,14 @@ int main() {
 						continue;
 					}
 					else if (sel == 1) {
+						cs.get_student()->set_studyroom_using(&E7);
 						while (true) {
 							system("cls");
-							cs.get_student()->set_studyroom_using(&E7);
 							std::cout << "현재 선택한 독서실: E7\n\n";
 							main_interface.show_studyroom(&E7);
 							std::cout << "\n\n1. 예약     2. 예약 취소     3. 뒤로 가기\n\n입력: ";
 							std::cin >> sel;
-							if (std::cin.fail() || sel < 0 || sel > 2) {
+							if (std::cin.fail() || sel < 0 || sel > 3) {
 								std::cout << "\n\n잘못된 입력입니다";
 								Sleep(500);
 								std::cin.clear();
@@ -118,14 +118,13 @@ int main() {
 								int seat_sel;
 								std::cout << "\n\n예약할 좌석의 번호를 입력하십시오: ";
 								std::cin >> seat_sel;
-								try {
-									cs.make_reservation(cs.get_student()->get_studyroom_using()->get_seat(seat_sel - 1));
-								}
-								catch (...) {
+								
+								if (std::cin.fail() || seat_sel < 0 || seat_sel > cs.get_student()->get_studyroom_using()->get_max_seat_num()) {
 									std::cout << "\n\n잘못된 입력입니다.";
 									Sleep(500);
 									continue;
 								}
+								cs.make_reservation(cs.get_student()->get_studyroom_using()->get_seat(seat_sel - 1));
 								std::cout << "\n\n예약이 완료되었습니다.";
 								Sleep(500);
 								continue;
@@ -155,7 +154,8 @@ int main() {
 						continue;
 					}
 				}
-				else {
+				else if (sel == 2) {
+					cs.set_student(nullptr);
 					break;
 				}
 			}

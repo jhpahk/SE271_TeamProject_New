@@ -49,12 +49,12 @@ std::vector<Seat> StudyRoom::get_seats()	{ return seats; }
 void StudyRoom::set_name(std::string studyroom_name)	{ name = studyroom_name; }
 void StudyRoom::set_cur_using_num(int i)				{ cur_using_num = i; }
 void StudyRoom::add_seat(Seat seat) {
-	if (cur_using_num == max_seat_num) {
+	if (cur_existing_num == max_seat_num) {
 		std::cout << "더 이상 좌석을 추가할 수 없습니다." << std::endl;
 		return;
 	}
+	cur_existing_num++;
 	seats.push_back(seat);
-	cur_using_num++;
 }
 
 // class StudentDB

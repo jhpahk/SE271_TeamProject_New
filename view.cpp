@@ -6,7 +6,7 @@
 
 void UI::show_studyroom(StudyRoom* studyroom) {
 	// 전체 좌석들 중 서로 다른 y coordinate 탐색
-	int size = studyroom->get_cur_using_num();
+	int size = studyroom->get_max_seat_num();
 	int* distinct_y = new int[size];
 	int y_count = 0;
 	int seat_num = 0;
