@@ -1,4 +1,5 @@
 #include <iostream>
+#include <windows.h>
 
 #include "control.h"
 
@@ -38,7 +39,7 @@ void Register::register_admin(StudentDB* db) {
 }
 
 // Log in
-void LogIn::student_log_in(StudentDB* db, ControlByStudent* control_student) {
+bool LogIn::student_log_in(StudentDB* db, ControlByStudent* control_student) {
 	int st_num;
 	std::string pwd;
 	std::cout << "학번을 입력해 주세요: ";
@@ -46,9 +47,10 @@ void LogIn::student_log_in(StudentDB* db, ControlByStudent* control_student) {
 	std::cout << std::endl;
 
 	Student* student = db->get_student(st_num);
-	if (student == nullptr) {
+	if (!student) {
 		std::cout << "존재하지 않는 학번입니다. 회원가입 후 사용해주세요." << std::endl;
-		return;
+		Sleep(500);
+		return false;
 	}
 
 	std::cout << "비밀번호를 입력해 주세요: ";
@@ -57,24 +59,25 @@ void LogIn::student_log_in(StudentDB* db, ControlByStudent* control_student) {
 
 	if (pwd != student->get_password()) {
 		std::cout << "비밀번호가 잘못되었습니다." << std::endl;
-		return;
+		return false;
 	}
 
 	std::cout << "로그인 되었습니다." << std::endl;
 	control_student->set_student(student);
+	return true;
 }
 
-void LogIn::admin_log_in(StudentDB* db, ControlByAdmin* control_admin) {
+bool LogIn::admin_log_in(StudentDB* db, ControlByAdmin* control_admin) {
 	std::string ad_id;
 	std::string pwd;
-	std::cout << "관리자 학번을 입력해 주세요: ";
+	std::cout << "관리자 ID를 입력해 주세요: ";
 	std::cin >> ad_id;
 	std::cout << std::endl;
 
 	Admin* admin = db->get_admin(ad_id);
 	if (!admin) {
-		std::cout << "등록되지 않은 학번입니다. 프로그램 관리자에게 문의해주세요." << std::endl;
-		return;
+		std::cout << "등록되지 않은 ID입니다. 프로그램 관리자에게 문의해주세요." << std::endl;
+		return false;
 	}
 
 	std::cout << "비밀번호를 입력해 주세요: ";
@@ -83,11 +86,12 @@ void LogIn::admin_log_in(StudentDB* db, ControlByAdmin* control_admin) {
 
 	if (pwd != admin->get_password()) {
 		std::cout << "비밀번호가 잘못되었습니다." << std::endl;
-		return;
+		return false;
 	}
 
 	std::cout << "관리자 권한으로 로그인 되었습니다." << std::endl;
 	control_admin->set_admin(admin);
+	return true;
 }
 
 // ControlByStudent
