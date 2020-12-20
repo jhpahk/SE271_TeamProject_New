@@ -46,6 +46,7 @@ void LogIn::student_log_in(StudentDB* db, ControlByStudent* control_student) {
 	std::cout << std::endl;
 
 	Student* student = db->get_student(st_num);
+	std::cout << student << std::endl;
 	if (student == nullptr) {
 		std::cout << "존재하지 않는 학번입니다. 회원가입 후 사용해주세요." << std::endl;
 		return;
