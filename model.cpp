@@ -161,7 +161,7 @@ void StudentDB::add_admin(Admin admin) {
 }
 
 Student* StudentDB::get_student(int student_num) {
-	for (auto student : student_database) {
+	for (auto& student : student_database) {
 		if (student_num == student.get_student_num()) return &student;
 	}
 	return nullptr;
