@@ -50,7 +50,9 @@ int main() {
 		}
 		else if (sel == 1) {
 			system("cls");
-			log_in.student_log_in(&database, &cs);
+			if (!log_in.student_log_in(&database, &cs)) {
+				continue;
+			}
 			while (true) {
 				system("cls");
 				int sel;

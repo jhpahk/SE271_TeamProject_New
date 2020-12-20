@@ -33,6 +33,6 @@ public:
 
 class LogIn {
 public:
-	void student_log_in(StudentDB* db, ControlByStudent* control_student);
-	void admin_log_in(StudentDB* db, ControlByAdmin* control_admin);
+	bool student_log_in(StudentDB* db, ControlByStudent* control_student);
+	bool admin_log_in(StudentDB* db, ControlByAdmin* control_admin);
 };
