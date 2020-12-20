@@ -13,6 +13,7 @@ private:
 	Student* student = nullptr;
 public:
 	void set_student(Student* student);
+	Student* get_student();
 	void make_reservation(Seat* seat);			// 좌석 예약
 	void cancel_reservation();					// 예약 취소
 	void report_away_from(Seat* seat);			// 자리 비움 신고
@@ -24,6 +25,7 @@ private:
 	Admin* admin = nullptr;
 public:
 	void set_admin(Admin* admin);
+	Admin* get_admin();
 	void add_studyroom();
 	void change_seat_coordinate();
 	void force_cancel_reservation(Seat* seat);

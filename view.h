@@ -7,7 +7,7 @@ class UI {
 private:
 	Student* cur_log_in_student;
 public:
-	void user_interface();
+	void action_select();
 	void show_studyroom(StudyRoom* studyroom);
 	void show_seat_status(Seat* seat);
 };

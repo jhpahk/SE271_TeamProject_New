@@ -4,10 +4,6 @@
 #include "control.h"
 #include "view.h"
 
-void UI::user_interface() {
-
-}
-
 void UI::show_studyroom(StudyRoom* studyroom) {
 	// 전체 좌석들 중 서로 다른 y coordinate 탐색
 	int size = studyroom->get_cur_using_num();

@@ -46,7 +46,7 @@ void LogIn::student_log_in(StudentDB* db, ControlByStudent* control_student) {
 	std::cout << std::endl;
 
 	Student* student = db->get_student(st_num);
-	if (!student) {
+	if (student == nullptr) {
 		std::cout << "존재하지 않는 학번입니다. 회원가입 후 사용해주세요." << std::endl;
 		return;
 	}
@@ -93,6 +93,10 @@ void LogIn::admin_log_in(StudentDB* db, ControlByAdmin* control_admin) {
 // ControlByStudent
 void ControlByStudent::set_student(Student* controller) {
 	student = controller;
+}
+
+Student* ControlByStudent::get_student() {
+	return student;
 }
 
 void ControlByStudent::make_reservation(Seat* seat) {

@@ -2,7 +2,6 @@
 #include <fstream>
 #include <sstream>
 #include <istream>
-#include <algorithm>
 #include <math.h>
 
 #include "model.h"
@@ -244,9 +243,5 @@ void StudyRoomDB::save_studyroom_database() {
 }
 
 void StudyRoomDB::add_studyroom(StudyRoom* studyroom) {
-	studyroom_database.push_back(studyroom);
-}
 
-void StudyRoomDB::delete_studyroom(StudyRoom* studyroom) {
-	return;
 }

@@ -149,5 +149,4 @@ public:
 	int load_studyroom_database();
 	void save_studyroom_database();
 	void add_studyroom(StudyRoom* studyroom);
-	void delete_studyroom(StudyRoom* studyroom);
 };
