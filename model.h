@@ -102,11 +102,12 @@ private:
 	std::string name = NULL;
 	int max_seat_num = NULL;					// 전체 좌석 수
 	int cur_using_num = NULL;					// 이용중인 좌석 수
+	int cur_existing_num = NULL;
 	std::vector<Seat> seats;					// StudyRoom에 포함된 Seat instance vector
 
 public:
 	StudyRoom() {}
-	StudyRoom(std::string room_name, int max) : name{ room_name }, max_seat_num { max }, cur_using_num{ 0 } {}
+	StudyRoom(std::string room_name, int max) : name{ room_name }, max_seat_num{ max }, cur_using_num{ 0 }, cur_existing_num{ 0 } {}
 
 	// get data
 	std::string get_name();

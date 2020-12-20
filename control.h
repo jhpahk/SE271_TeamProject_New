@@ -24,8 +24,6 @@ private:
 public:
 	void set_admin(Admin* admin);
 	Admin* get_admin();
-	void add_studyroom();
-	void change_seat_coordinate();
 	void force_cancel_reservation(Seat* seat);
 };
 

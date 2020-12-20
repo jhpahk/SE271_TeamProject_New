@@ -79,6 +79,7 @@ bool LogIn::admin_log_in(StudentDB* db, ControlByAdmin* control_admin) {
 	Admin* admin = db->get_admin(ad_id);
 	if (!admin) {
 		std::cout << "등록되지 않은 ID입니다. 프로그램 관리자에게 문의해주세요." << std::endl;
+		Sleep(500);
 		return false;
 	}
 
@@ -88,11 +89,13 @@ bool LogIn::admin_log_in(StudentDB* db, ControlByAdmin* control_admin) {
 
 	if (pwd != admin->get_password()) {
 		std::cout << "비밀번호가 잘못되었습니다." << std::endl;
+		Sleep(500);
 		return false;
 	}
 
 	std::cout << "관리자 권한으로 로그인 되었습니다." << std::endl;
 	control_admin->set_admin(admin);
+	Sleep(500);
 	return true;
 }
 
@@ -124,12 +127,14 @@ void ControlByStudent::cancel_reservation() {
 		return;
 	}
 
-	std::cout << student->get_seat_using()->get_seat_num() << "번 좌석 예약이 취소되었습니다." << std::endl;
+	std::cout << std::endl << student->get_seat_using()->get_seat_num() << "번 좌석 예약이 취소되었습니다." << std::endl;
+
+	student->get_seat_using()->get_belong_to()->set_cur_using_num(student->get_seat_using()->get_belong_to()->get_cur_using_num() - 1);
 	student->set_is_using_reverse();
 	student->get_seat_using()->set_res_student(nullptr);
 	student->get_seat_using()->set_reservation_reverse();
 	student->set_seat_using(nullptr);
-	student->get_seat_using()->get_belong_to()->set_cur_using_num(student->get_seat_using()->get_belong_to()->get_cur_using_num() - 1);
+	Sleep(500);
 }
 
 // ControlByAdmin
@@ -141,21 +146,14 @@ Admin* ControlByAdmin::get_admin() {
 	return admin;
 }
 
-void ControlByAdmin::add_studyroom() {
-
-}
-
-void ControlByAdmin::change_seat_coordinate() {
-
-}
-
 void ControlByAdmin::force_cancel_reservation(Seat* seat) {
 	if (!(seat->is_reserved())) {
-		std::cout << "예약중인 좌석이 없습니다." << std::endl;
+		std::cout << "예약중인 좌석이 아닙니다." << std::endl;
 		return;
 	}
 
 	std::cout << seat->get_seat_num() << "번 좌석 예약이 취소되었습니다." << std::endl;
+	seat->get_belong_to()->set_cur_using_num(seat->get_belong_to()->get_cur_using_num() - 1);
 	seat->get_res_student()->set_is_using_reverse();
 	seat->get_res_student()->set_seat_using(nullptr);
 	seat->get_res_student()->set_studyroom_using(nullptr);
@@ -164,5 +162,5 @@ void ControlByAdmin::force_cancel_reservation(Seat* seat) {
 	seat->set_res_student(nullptr);
 	seat->set_away_from_reverse();
 
-	seat->get_belong_to()->set_cur_using_num(seat->get_belong_to()->get_cur_using_num() - 1);
+	Sleep(500);
 }
